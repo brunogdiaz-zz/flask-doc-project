@@ -1,9 +1,14 @@
-# flask-doc-project
-http://flask.pocoo.org/docs/1.0/tutorial/
+# Flaskr
 
-# How to run
+Flaskr is a web app in where users can register, log in, and create posts other users can see.
+
+# How to Run Flask App
 
 ```bash
-source env_setup
-flask run
+source env_setup  # Sets up Flask Environments
+flask init-db     # Creates/Sets up Database
+flask run         # Runs Flask App (Defaulted in Dev mode based on env)
 ```
+
+# flask-doc-project
+http://flask.pocoo.org/docs/1.0/tutorial/
