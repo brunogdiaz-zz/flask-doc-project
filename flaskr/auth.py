@@ -6,6 +6,8 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 from flaskr.db import get_db
 
+# A Blueprint is a way to organize a group of related views and other code.
+# This is prefered instead of just connecting it directly with the app.
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 
@@ -45,6 +47,7 @@ def login():
         db = get_db()
         error = None
 
+        # Get user from Database
         user = db.execute(
             'SELECT * FROM user WHERE username = ?', (username, )
         ).fetchone()
@@ -59,6 +62,7 @@ def login():
         if error:
             flash(error)
         else:
+            # Clear and Set User Session
             session.clear()
             session['user_id'] = user['id']
             return redirect(url_for('index'))
@@ -66,6 +70,7 @@ def login():
     return render_template('auth/login.html')
 
 
+# Runs Before View Function - Checks if user is logged in
 @bp.before_app_request
 def load_logged_in_user():
     user_id = session.get('user_id')
@@ -80,10 +85,13 @@ def load_logged_in_user():
 
 @bp.route('/logout')
 def logout():
+    # Clears User Session to log off
     session.clear()
     return redirect(url_for('index'))
 
 
+# Will be a decorator for other views to force user to be logged in
+# Acts as a wrapper for other views
 def login_required(view):
     @functools.wrap(view)
     def wrapper_view(**kwargs):
