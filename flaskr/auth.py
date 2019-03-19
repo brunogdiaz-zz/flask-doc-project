@@ -25,7 +25,7 @@ def register():
             error = 'Password is required.'
         elif db.execute(
             'SELECT id FROM user WHERE username = ?', (username,)
-        ).fetchone() is None:
+        ).fetchone() is not None:
             error = f'Username "{username}" does not exist.'
         if error:
             flash(error)
