@@ -93,7 +93,7 @@ def logout():
 # Will be a decorator for other views to force user to be logged in
 # Acts as a wrapper for other views
 def login_required(view):
-    @functools.wrap(view)
+    @functools.wraps(view)
     def wrapper_view(**kwargs):
         if g.user is None:
             return redirect(url_for('auth.login'))
