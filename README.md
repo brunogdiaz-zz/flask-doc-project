@@ -11,11 +11,5 @@ flask init-db     # Creates/Sets up Database
 flask run         # Runs Flask App (Defaulted in Dev mode based on env)
 ```
 
-## Bugs
-
-There are some current bugs with the Updating of posts.
-* Sometimes it doesn't update
-* Sometimes it updates the wrong post
-
 ## flask-doc-project
 http://flask.pocoo.org/docs/1.0/tutorial
