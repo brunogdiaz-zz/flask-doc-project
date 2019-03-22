@@ -26,7 +26,7 @@ def register():
         elif db.execute(
             'SELECT id FROM user WHERE username = ?', (username,)
         ).fetchone() is not None:
-            error = f'Username "{username}" does not exist.'
+            error = f'Username "{username}" already exists exist.'
         if error:
             flash(error)
         else:
@@ -51,9 +51,10 @@ def login():
         user = db.execute(
             'SELECT * FROM user WHERE username = ?', (username, )
         ).fetchone()
-
-        if user is None:
+        if username is None:
             error = 'Username is required.'
+        elif user is None:
+            error = 'Username is not in our system.'
         elif password is None:
             error = 'Password is required.'
         elif not check_password_hash(user['password'], password):

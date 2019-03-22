@@ -47,7 +47,6 @@ def create():
 @login_required
 def update(id):
     post = get_post(id)
-
     if request.method == 'POST':
         title = request.form['title']
         body = request.form['body']
@@ -62,7 +61,7 @@ def update(id):
             db.execute(
                 'UPDATE post SET title = ?, body = ? '
                 'WHERE id = ?',
-                (title, body, g.user['id'])
+                (title, body, post['id'])
             )
             db.commit()
             return redirect(url_for('blog.index'))
