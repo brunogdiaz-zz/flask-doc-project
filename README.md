@@ -11,5 +11,8 @@ flask init-db     # Creates/Sets up Database
 flask run         # Runs Flask App (Defaulted in Dev mode based on env)
 ```
 
+![](docs/flaskr-showoff.gif)
+
+
 ## flask-doc-project
 http://flask.pocoo.org/docs/1.0/tutorial
