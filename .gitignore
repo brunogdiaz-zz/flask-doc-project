@@ -4,3 +4,4 @@ __pycache__
 instance
 start.sh
 flaskr.egg-info
+.coverage

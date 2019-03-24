@@ -26,7 +26,7 @@ def register():
         elif db.execute(
             'SELECT id FROM user WHERE username = ?', (username,)
         ).fetchone() is not None:
-            error = f'Username "{username}" already exists exist.'
+            error = f'Username "{username}" already registered.'
         if error:
             flash(error)
         else:
@@ -95,10 +95,10 @@ def logout():
 # Acts as a wrapper for other views
 def login_required(view):
     @functools.wraps(view)
-    def wrapper_view(**kwargs):
+    def wrapped_view(**kwargs):
         if g.user is None:
             return redirect(url_for('auth.login'))
 
         return view(**kwargs)
 
-    return wrapper_view
+    return wrapped_view
