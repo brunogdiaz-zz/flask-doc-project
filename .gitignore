@@ -5,3 +5,4 @@ instance
 start.sh
 flaskr.egg-info
 .coverage
+/htmlcov
